@@ -12,7 +12,7 @@ public class SpringApplication {
 			appContext.refresh();
 
 			CompanyService companyService = (CompanyService) appContext.getBean("companyService");
-			companyService.getEmployeeService().sayHello();
+			// companyService.getEmployeeService().sayHello();
 		}
 	}
 
