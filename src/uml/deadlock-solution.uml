@@ -1,0 +1,26 @@
+@startuml
+!theme amiga
+Participant Thread1
+Participant "Lock A" as A
+Participant "Lock B" as B
+Participant Thread2
+Thread1 --> A: tryLock()
+A --> Thread1 : true
+Thread1 --> B: tryLock()
+B --> Thread1 : true
+Thread1 --> Thread1 : si locks acquis exécute tâche
+Thread1 --> A: unlock()
+Thread1 --> B: unlock()
+Thread1 --> A: tryLock()
+A --> Thread1 : true
+Thread2 --> B: tryLock()
+B --> Thread2 : true
+Thread1 --> B: tryLock()
+A --> Thread1 : false
+Thread2 --> A: tryLock()
+A --> Thread2 : false
+Thread1 --> Thread1 : Tous les locks n'ont pu être acquis : \n tâche annulée
+Thread1 --> A: unlock()
+Thread2 --> Thread2 : Tous les locks n'ont pu être acquis : \n tâche annulée
+Thread2 --> B: unlock()
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+!theme amiga
+Thread1 --> "Thread(LongTaskRunnable)": start()
+Thread1 --> Thread1 : wait
+loop infini
+	"Thread(LongTaskRunnable)" --> "Thread(LongTaskRunnable)" : incrémente i
+end
+Thread1 --> "Thread(LongTaskRunnable)": orderStop() (ne fait rien)
+@enduml

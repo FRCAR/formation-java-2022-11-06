@@ -1,0 +1,15 @@
+@startuml
+!pragma teoz true
+!theme amiga
+Participant Thread1
+Participant Thread2
+Thread1 -->(30) Thread2 : checkState()
+& Thread2 -->(30) Thread1
+Thread1 --> Thread1 : changeState()
+& Thread2 --> Thread2 : changeState()
+Thread1 -->(30) Thread2 : checkState()
+& Thread2 -->(30) Thread1
+Thread1 --> Thread1 : changeState()
+& Thread2 --> Thread2 : changeState()
+note right Thread1: etc...
+@enduml

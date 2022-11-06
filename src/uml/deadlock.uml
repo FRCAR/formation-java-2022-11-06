@@ -1,0 +1,13 @@
+@startuml
+!theme amiga
+Participant Thread1
+Participant A
+Participant B
+Participant Thread2
+Thread1 --> A: synchronize(A)
+A --> Thread1: lock A
+Thread2 --> B: synchronize(B)
+B --> Thread2: lock B
+Thread1 -->o B: synchronize(B) (Thread BLOCKED)
+Thread2 -->o A: synchronize(A) (Thread BLOCKED)
+@enduml

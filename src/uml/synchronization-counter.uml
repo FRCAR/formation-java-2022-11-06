@@ -1,0 +1,9 @@
+@startuml
+!theme amiga
+Thread1 --> Counter: increment()
+Thread2 --> Counter: increment()
+Thread1 --> Counter: value()
+Counter --> Thread1: 2
+Thread2 --> Counter: value()
+Counter --> Thread2: 2
+@enduml

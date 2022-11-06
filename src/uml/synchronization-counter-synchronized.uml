@@ -1,0 +1,8 @@
+@startuml
+!theme amiga
+Thread1 --> Counter: incrementAndGet()
+Thread2 -->o Counter: incrementAndGet() : \n (Thread2 passe en mode Blocked)
+Counter --> Thread1: 1 (débloque Thread2)
+Thread2 --> Counter: incrementAndGet()
+Counter --> Thread2: 2
+@enduml
