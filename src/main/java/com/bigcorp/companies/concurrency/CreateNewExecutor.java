@@ -8,8 +8,6 @@ public class CreateNewExecutor {
 	public static void main(String[] args) {
 
 		System.out.println("Démarrage Thread principal");
-		// Ci-dessous, ne démarre pas un Thread
-		// new LongTaskRunnable().run();
 		Runnable runnable = new LongTaskRunnable();
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
 		executorService.execute(runnable);

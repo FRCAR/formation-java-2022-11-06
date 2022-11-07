@@ -20,7 +20,7 @@ public class SynchronizationIssues {
 
 	private static final class LongTaskRunnable implements Runnable {
 
-		private boolean stopOrdered = false;
+		private volatile boolean stopOrdered = false;
 
 		public void orderStop() {
 			this.stopOrdered = true;
