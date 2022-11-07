@@ -1,7 +1,5 @@
 package com.bigcorp.companies.concurrency;
 
-import java.util.concurrent.TimeUnit;
-
 public class SynchronizeWithJoinCorrection {
 
 	public static void main(String[] args) throws InterruptedException {
