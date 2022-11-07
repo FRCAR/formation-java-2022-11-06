@@ -9,6 +9,16 @@ public class ClassA {
 	private String lastName = "Dupont";
 
 	private Long age = 3l;
+	
+	private ClassB classB = new ClassB();
+
+	public ClassB getClassB() {
+		return classB;
+	}
+
+	public void setClassB(ClassB classB) {
+		this.classB = classB;
+	}
 
 	public boolean isReady() {
 		return ready;
