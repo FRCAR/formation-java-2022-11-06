@@ -31,6 +31,14 @@ public class HibernateInit {
 		System.out.println(savedCompany.getName());
 		tx.commit();
 		em.close();
+
+		EntityManager em2 = PersistenceFactory.INSTANCE.getEntityManager();
+		EntityTransaction tx2 = em2.getTransaction();
+		tx2.begin();
+		savedCompany.setName("New Big Corp");
+		em2.merge(savedCompany);
+		tx2.commit();
+		em2.close();
 	}
 
 }

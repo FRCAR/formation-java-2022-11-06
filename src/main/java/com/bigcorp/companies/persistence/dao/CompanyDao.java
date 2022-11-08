@@ -10,6 +10,11 @@ import com.bigcorp.companies.persistence.model.Company;
 
 public class CompanyDao {
 
+	/**
+	 * Récupère la Company ayant l'id : id . Peut renvoyer null...
+	 * @param id
+	 * @return la company ayant l'id, ou null si aucune n'est trouvée.
+	 */
 	public Company find(Long id) {
 		EntityManager em = PersistenceFactory.INSTANCE.getEntityManager();
 		Company savedCompany = em.find(Company.class, id);
@@ -45,6 +50,12 @@ public class CompanyDao {
 		System.out.println(savedCompany.getId());
 		savedCompany = dao.findByName("igCO").get(0);
 		System.out.println(savedCompany.getName());
+		System.out.println("id vaut : " + savedCompany.getId());
+		
+		Company companyId45 = dao.find(45l);
+		if(companyId45 == null) {
+			System.out.println("La company est null"  );			
+		}
 
 	}
 

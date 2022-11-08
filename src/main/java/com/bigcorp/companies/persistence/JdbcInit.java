@@ -2,6 +2,7 @@ package com.bigcorp.companies.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,11 +19,27 @@ public class JdbcInit {
 				+ "    )";
 		String insertQuery = "insert into COMPANY(ID, NAME) VALUES (1, 'bigCorp')";
 		String selectQuery = "select ID, NAME from COMPANY";
+		
+		//Utilisation d'un statement
 		try (Statement stmt = con.createStatement()) {
+			
 			stmt.executeUpdate(dropTableQuery);
 			stmt.executeUpdate(createTableQuery);
 			stmt.executeUpdate(insertQuery);
 			ResultSet rs = stmt.executeQuery(selectQuery);
+			while (rs.next()) {
+				long id = rs.getLong("ID");
+				String name = rs.getString("NAME");
+				System.out.println("id : " + id + " , name : " + name);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("SQL Error", e);
+		}
+		
+		//Utilisation d'un preparedStatement
+		try(PreparedStatement preparedStatement 
+					= con.prepareStatement("select * from COMPANY")){
+			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				long id = rs.getLong("ID");
 				String name = rs.getString("NAME");
