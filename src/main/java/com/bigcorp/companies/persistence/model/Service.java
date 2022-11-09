@@ -7,15 +7,18 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "COMPANY")
-public class Company {
+@Table(name = "SERVICE")
+public class Service {
  
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
@@ -23,13 +26,15 @@ public class Company {
 
 	private String name;
 	
-	private LocalDate date = LocalDate.now();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="COMPANY_ID")
+	private Company company;
 	
-	@Enumerated(EnumType.STRING)
-	private CompanyType companyType = CompanyType.SARL;
+	@OneToMany(mappedBy = "serviceAsEmployee")
+	private Set<Employee> employees = new HashSet<>();
 	
-	@OneToMany(mappedBy = "company")
-	private Set<Service> services = new HashSet<>();
+	@OneToMany(mappedBy = "serviceAsManager")
+	private Set<Employee> managers = new HashSet<>();
 	
 	public Long getId() {
 		return id;
@@ -51,30 +56,29 @@ public class Company {
 		return "id = " + this.id + " , name = " + this.name;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
-	public CompanyType getCompanyType() {
-		return companyType;
+	public Set<Employee> getEmployees() {
+		return employees;
 	}
 
-	public void setCompanyType(CompanyType companyType) {
-		this.companyType = companyType;
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
 	}
 
-	public Set<Service> getServices() {
-		return services;
+	public Set<Employee> getManagers() {
+		return managers;
 	}
 
-	public void setServices(Set<Service> services) {
-		this.services = services;
+	public void setManagers(Set<Employee> managers) {
+		this.managers = managers;
 	}
-	
 
 	
 
