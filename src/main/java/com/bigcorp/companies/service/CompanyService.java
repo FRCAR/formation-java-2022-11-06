@@ -15,8 +15,6 @@ import com.bigcorp.companies.rest.bean.CompanyRestBean;
 @Component
 public class CompanyService {
 
-	private Map<Long, CompanyRestBean> companies = new HashMap<>();
-
 	@Autowired
 	private EmployeeService employeeService;
 
@@ -41,12 +39,6 @@ public class CompanyService {
 
 	public Company getCompany(Long id) {
 		return this.companyDao.find(id);
-	}
-
-	public CompanyService() {
-		this.companies.put(1l, new CompanyRestBean(1l, "VMWARE"));
-		this.companies.put(2l, new CompanyRestBean(2l, "ORACLE"));
-		this.companies.put(3l, new CompanyRestBean(3l, "MICROSOFT"));
 	}
 
 	public void removeById(Long id) {
