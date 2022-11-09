@@ -1,16 +1,16 @@
 package com.bigcorp.companies.persistence.dao;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.springframework.stereotype.Component;
+
 import com.bigcorp.companies.persistence.PersistenceFactory;
 import com.bigcorp.companies.persistence.model.Company;
-import com.bigcorp.companies.persistence.model.Employee;
-import com.bigcorp.companies.persistence.model.Employee.Contract;
 
+@Component
 public class CompanyDao {
 
 	/**
@@ -24,6 +24,16 @@ public class CompanyDao {
 		Company savedCompany = em.find(Company.class, id);
 		em.close();
 		return savedCompany;
+	}
+	
+
+	public List<Company> findAll() {
+		EntityManager em = PersistenceFactory.INSTANCE.getEntityManager();
+		List<Company> companies = em
+				.createQuery("select c from Company c ",
+						Company.class).getResultList();
+		em.close();
+		return companies;
 	}
 
 	public List<Company> findByName(String name) {

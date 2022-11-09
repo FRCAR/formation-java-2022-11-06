@@ -10,6 +10,7 @@ import com.bigcorp.companies.persistence.PersistenceFactory;
 import com.bigcorp.companies.persistence.model.Company;
 import com.bigcorp.companies.persistence.model.Employee;
 import com.bigcorp.companies.persistence.model.Employee.Contract;
+import com.bigcorp.companies.service.CompanyService;
 
 public class EmployeeDao {
 
@@ -34,12 +35,13 @@ public class EmployeeDao {
 		EntityManager em = PersistenceFactory.INSTANCE.getEntityManager();
 		List<Employee> employees = em.createQuery(
 				"select distinct employee from Employee employee " 
-						+ " left outer join fetch employee.serviceAsEmployee s"
+						+ " left outer join fetch employee.serviceAsEmployee s "
 						+ " left outer join fetch s.managers managers " 
 						+ " where managers.lastName = :lastName",
 				Employee.class).setParameter("lastName", lastName).getResultList();
 		em.close();
 		return employees;
+		
 	}
 
 	public Employee findWithCompany(Long id) {

@@ -20,11 +20,17 @@ public class ChildDao {
 		return savedChild;
 	}
 
+	/**
+	 * Récupère tous les enfants liés (indirectement) à la Company ayant 
+	 * companyName
+	 * @param companyName
+	 * @return
+	 */
 	public List<Child> findFromCompanyName(String companyName) {
 		EntityManager em = PersistenceFactory.INSTANCE.getEntityManager();
 		List<Child> childs = em.createQuery(
 				"select distinct child from Child child "
-						+ " left outer join fetch child.parent p"
+						+ " left outer join fetch child.parent p "
 						+ " left outer join fetch p.serviceAsEmployee s "
 						+ " left outer join fetch s.company company "
 						+ " where company.name = :companyName",

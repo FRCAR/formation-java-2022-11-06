@@ -1,5 +1,7 @@
 package com.bigcorp.companies.rest.bean;
 
+import com.bigcorp.companies.persistence.model.Company;
+
 public class CompanyRestBean {
 
 	private Long id;
@@ -31,5 +33,23 @@ public class CompanyRestBean {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public static Company toCompany(CompanyRestBean companyRestBean) {
+		if(companyRestBean == null) {
+			return null;
+		}
+		Company company = new Company();
+		company.setId(companyRestBean.getId());
+		company.setName(companyRestBean.getName());
+		return company;
+	}
+	
+	public static CompanyRestBean toCompanyRestBean(Company company) {
+		CompanyRestBean companyRestBean = new CompanyRestBean();
+		companyRestBean.setId(company.getId());
+		companyRestBean.setName(company.getName());
+		return companyRestBean;
+	}
+
 
 }
