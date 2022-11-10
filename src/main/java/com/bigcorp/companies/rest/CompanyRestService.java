@@ -31,7 +31,7 @@ public class CompanyRestService {
 	}
 
 	@GetMapping("/companies")
-	public Collection<CompanyRestBean> getAll2() {
+	public Collection<CompanyRestBean> getAll() {
 		return this.companyService.findAll();
 	}
 

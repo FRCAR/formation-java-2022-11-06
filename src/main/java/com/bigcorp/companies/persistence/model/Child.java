@@ -24,6 +24,8 @@ public class Child {
 	private String lastName;
 
 	private LocalDate birthDate;
+	
+	private int age;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PARENT_ID")
@@ -39,6 +41,14 @@ public class Child {
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public void setFirstName(String firstName) {

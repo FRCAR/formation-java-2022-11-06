@@ -27,9 +27,8 @@ public class MyFirstTest {
 	}
 
 	@Test
-	@Disabled
-	public void testFailure() {
-		assertEquals(3, 2);
+	public void testPi() {
+		assertEquals(Math.PI, 3.14, 0.1);
 	}
 
 }

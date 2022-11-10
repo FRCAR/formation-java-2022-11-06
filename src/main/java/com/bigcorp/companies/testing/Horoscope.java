@@ -3,6 +3,7 @@ package com.bigcorp.companies.testing;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Horoscope {
 
@@ -33,7 +34,9 @@ public class Horoscope {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+
+		TimeUnit.SECONDS.sleep(10);
 		LocalDate date = LocalDate.now();
 		Horoscope horoscope = new Horoscope();
 		while (true) {
